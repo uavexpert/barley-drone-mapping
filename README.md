@@ -15,13 +15,13 @@ A low-cost drone mapping project: flying a sub-250 g drone over a 4 ha winter ba
 - **App:** Litchi Pilot (automated grid mission)
 - **Altitude:** 45 m, speed 4 m/s
 - **Overlap:** 80% front / 75% side
-- **Photos:** 294 captured
+- **Photos:** 284 captured
 - **Camera:** 48 MP, ISO 800, 1/640 s (foggy conditions)
 
 ## Processing
 
 - **Software:** WebODM (open source) + QGIS
-- **GCPs:** 5 ground control points, RMS 0.15 m
+- **Georeferencing:** GPS only — no GCPs in the final run
 - **Output:** Georeferenced orthophoto (EPSG:32632, UTM 32N), ~5 cm GSD
 - **Fix:** The first orthophoto came out bent (curved outline). Straightened in QGIS Georeferencer using Thin Plate Spline warp onto a satellite basemap.
 
