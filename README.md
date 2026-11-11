@@ -47,6 +47,13 @@ Calculated in QGIS Raster Calculator from the orthophoto bands.
 
 A €500 sub-250 g drone + free software (WebODM, QGIS) can produce a usable crop vigor map — no expensive multispectral sensor needed. The same workflow will be repeated in spring 2027 (stem elongation) to track how the pattern changes.
 
+## What went wrong and what I learned
+
+- **The orthophoto came out bent.** The field outline curved and the east edge bowed out, even though the 3D model looked fine. Likely causes: nadir-only flight (no crosshatch), rolling shutter on the Mini 3, and all control points sitting on one edge. Fixed it by warping the orthophoto onto a satellite basemap in QGIS (Thin Plate Spline). For the spring flight: fly a crosshatch and spread ground markers across the whole field.
+- **Docker ate the disk.** WebODM's data grew to ~124 GB and left only 17 GB free on C:. Deleting tasks in WebODM didn't free the space — the virtual disk doesn't shrink by itself. Learned to save the orthophoto .tif outside Docker the same day, and to compact the disk instead of wiping it.
+- **VARI looked all red at first.** The values were correct (~0.15), but a few outlier pixels stretched the color scale from -3 to 4, so everything bunched into one color. Fix: set the display range tight around the real values (Min 0, Max 0.3) and don't click Classify after setting Min/Max — it resets them.
+- **Foggy, noisy photos still work.** ISO 800 in fog gave noisy images, but VARI was still usable. For spring: shutter around 1/320 s so ISO drops to 200–400, and 12 MP instead of 48 MP (VARI gains nothing from 48 MP, and smaller files process faster).
+
 ## Tools
 
 - DJI Mini 3 + Litchi Pilot
